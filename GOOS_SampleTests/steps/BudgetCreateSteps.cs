@@ -10,13 +10,7 @@ namespace GOOS_SampleTests.steps
     public class BudgetCreateSteps : FluentTest
     {
         private BudgetCreatePage _budgetCreatePage;
-
-        [BeforeScenario()]
-        public void BeforeScenario()
-        {
-            SeleniumWebDriver.Bootstrap(SeleniumWebDriver.Browser.Chrome);
-        }
-
+        
         public BudgetCreateSteps()
         {
             this._budgetCreatePage = new BudgetCreatePage(this);
