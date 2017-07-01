@@ -39,18 +39,5 @@ namespace GOOS_SampleTests.steps
             this._budgetCreatePage.ShouldDisplay(message);
         }
 
-
-        [Given(@"Budget table existed budgets")]
-        public void GivenBudgetTableExistedBudgets(Table table)
-        {
-            var budgets = table.CreateSet<Budget>();
-            using (var dbcontext = new GOOS_Sample.Models.DataModels.Aluxe_TestEntities())
-            {
-                dbcontext.Budgets.AddRange(budgets);
-                dbcontext.SaveChanges();
-            }
-        }
-
     }
-    
 }

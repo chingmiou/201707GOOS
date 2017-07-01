@@ -3,7 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using FluentAssertions;
 using GOOS_Sample.Controllers;
-using GOOS_Sample.Models;
+using GOOS_Sample.Models.DataModels;
 using GOOS_Sample.Models.ViewModels;
 using GOOS_SampleTests.steps.Common;
 using Microsoft.Practices.Unity;
@@ -16,6 +16,7 @@ namespace GOOS_SampleTests.steps
     public class BudgetControllerSteps
     {
         private BudgetController _budgetController;
+        private readonly InsertTable _insertTable = new InsertTable();
 
         [BeforeScenario()]
         public void BeforeScenario()
@@ -49,7 +50,7 @@ namespace GOOS_SampleTests.steps
         [Then(@"it should exist a budget record in budget table")]
         public void ThenItShouldExistABudgetRecordInBudgetTable(Table table)
         {
-            using (var dbcontext = new GOOS_Sample.Models.DataModels.Aluxe_TestEntities())
+            using (var dbcontext = new Aluxe_TestEntities())
             {
                 var budget = dbcontext.Budgets
                     .FirstOrDefault();
@@ -57,5 +58,19 @@ namespace GOOS_SampleTests.steps
                 table.CompareToInstance(budget);
             }
         }
+
+        [Then(@"ViewBag should have a message for updating successfully")]
+        public void ThenViewBagShouldHaveAMessageForUpdatingSuccessfully()
+        {
+            var result = ScenarioContext.Current.Get<ActionResult>() as ViewResult;
+            string message = result.ViewBag.Message;
+            message.Should().Be(GetUpdatingSuccessfullyMessage());
+        }
+
+        private string GetUpdatingSuccessfullyMessage()
+        {
+            return "updated successfully";
+        }
+
     }
 }
