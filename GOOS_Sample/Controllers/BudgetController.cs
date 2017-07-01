@@ -19,7 +19,7 @@ namespace GOOS_Sample.Controllers
         [HttpPost]
         public ActionResult Add(BudgetAddViewModel model)
         {
-            using (var dbcontext = new Aluxe_TestEntities())
+            using (var dbcontext = new GOOS_Sample.Models.DataModels.Aluxe_TestEntities())
             {
                 var budget = new Budget() { Amount = model.Amount, YearMonth = model.Month };
                 dbcontext.Budgets.Add(budget);

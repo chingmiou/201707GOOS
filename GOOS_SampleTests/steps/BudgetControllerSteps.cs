@@ -4,7 +4,6 @@ using System.Web.Mvc;
 using FluentAssertions;
 using GOOS_Sample.Controllers;
 using GOOS_Sample.Models.ViewModels;
-using GOOS_SampleTests.DataModelsForIntegrationTest;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -46,7 +45,7 @@ namespace GOOS_SampleTests.steps
         [Then(@"it should exist a budget record in budget table")]
         public void ThenItShouldExistABudgetRecordInBudgetTable(Table table)
         {
-            using (var dbcontext = new Aluxe_TestEntities())
+            using (var dbcontext = new GOOS_Sample.Models.DataModels.Aluxe_TestEntities())
             {
                 var budget = dbcontext.Budgets
                     .FirstOrDefault();
