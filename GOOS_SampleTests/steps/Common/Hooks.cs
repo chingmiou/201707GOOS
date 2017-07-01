@@ -5,6 +5,7 @@ using System.Text;
 using System.Web.Mvc;
 using FluentAutomation;
 using GOOS_Sample.Models;
+using GOOS_Sample.Models.DataModels;
 using Microsoft.Practices.Unity;
 using TechTalk.SpecFlow;
 
@@ -59,6 +60,8 @@ namespace GOOS_SampleTests.steps.Common
         public static void RegisterDIContainer()
         {
             UnityContainer = new UnityContainer();
+
+            UnityContainer.RegisterType<IRepository<Budget>, BudgetRepository>();
             UnityContainer.RegisterType<IBudgetService, BudgetService>();
         }
         public static IUnityContainer UnityContainer
