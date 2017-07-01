@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using FluentAutomation;
-using GOOS_SampleTests.DataModelsForIntegrationTest;
 using TechTalk.SpecFlow;
 
 namespace GOOS_SampleTests.steps.Common
