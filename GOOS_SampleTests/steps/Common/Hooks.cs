@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using FluentAutomation;
+using GOOS_Sample.Models;
+using Microsoft.Practices.Unity;
 using TechTalk.SpecFlow;
 
 namespace GOOS_SampleTests.steps.Common
@@ -50,6 +52,19 @@ namespace GOOS_SampleTests.steps.Common
 
                 dbcontext.SaveChangesAsync();
             }
+        }
+
+
+        [BeforeTestRun()]
+        public static void RegisterDIContainer()
+        {
+            UnityContainer = new UnityContainer();
+            UnityContainer.RegisterType<IBudgetService, BudgetService>();
+        }
+        public static IUnityContainer UnityContainer
+        {
+            get;
+            set;
         }
     }
 }
